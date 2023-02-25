@@ -139,3 +139,32 @@ class WorkerButton extends StatelessWidget {
         child: Center(child: SvgPicture.asset('assets/profile/profile_1.svg')));
   }
 }
+
+class AddButton extends StatelessWidget {
+  const AddButton({
+    Key? key,
+    required this.height,
+    required this.width,
+  }) : super(key: key);
+
+  final double height;
+  final double width;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(right: 10),
+      decoration: BoxDecoration(
+          color: redColor, borderRadius: BorderRadius.circular(12)),
+      width: 42,
+      height: 42,
+      child: const Center(
+        child: Icon(
+          Icons.add,
+          size: 30,
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+}
