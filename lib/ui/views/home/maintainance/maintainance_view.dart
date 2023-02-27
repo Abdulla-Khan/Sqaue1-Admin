@@ -2,15 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:squareone_admin/ui/views/forms/add_depart_member/add_depart_member_view.dart';
 import 'package:squareone_admin/ui/views/forms/add_outlet/add_outlet_view.dart';
-import 'package:squareone_admin/ui/views/home/home_controller.dart';
-import 'package:squareone_admin/ui/views/tickets/tickets_view.dart';
 
-import '../../component/buttons.dart';
-import '../../component/colors.dart';
-import '../../component/department_tile.dart';
+import '../../../component/buttons.dart';
+import '../../../component/colors.dart';
+import '../../../component/department_tile.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+class MaintainanceHomeView extends StatelessWidget {
+  const MaintainanceHomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,20 +31,16 @@ class HomeView extends StatelessWidget {
                   color: Colors.black.withOpacity(0.5),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children:   [
-                      GetX<HomeController>(
-                        init: Get.put<HomeController>(HomeController()),
-                        builder: (controller) => 
-                        Text(
-                          'Hi ${controller.name.value}! Welcome to Square1 ',
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white),
-                        ),
+                    children: const [
+                      Text(
+                        'Hi Abdullah! Welcome to Square1 ',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white),
                       ),
-                      const SizedBox(
+                      SizedBox(
                         width: 280,
                         child: Text(
                           '"Where Technology Meets Convenience '
@@ -100,23 +94,15 @@ class HomeView extends StatelessWidget {
                                   mainAxisSpacing: 5,
                                   crossAxisSpacing: 10,
                                   crossAxisCount: 2),
-                          itemCount: 6,
+                          itemCount: maintainanceCardTitle.length,
                           itemBuilder: (context, index) {
-                            return GestureDetector(
-                              onTap: () {
-                                Get.to(() => TicketsView(), arguments: [
-                                  homeCardTitle[index],
-                                  homeCardHeaders[index]
-                                ]);
-                              },
-                              child: DepartmentTile(
-                                width: width,
-                                height: height,
-                                title: homeCardTitle[index],
-                                imgUrl: homeCardImages[index],
-                                header: homeCardHeaders[index],
-                              ),
-                            );
+                            return DepartmentTile(
+                              width: width,
+                              height: height,
+                              title: maintainanceCardTitle[index],
+                              imgUrl: maintainanceCardImages[index],
+                              header: maintainanceCardHeaders[index],
+                            );  
                           }))
                 ],
               ),

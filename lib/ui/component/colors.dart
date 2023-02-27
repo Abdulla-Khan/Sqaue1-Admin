@@ -26,6 +26,51 @@ List homeCardImages = [
   'assets/home/non_retail.svg',
 ];
 
+List homeCardHeaders = [
+  'Store-Renovation',
+  'Security',
+  'Maintainance',
+  'Gate-Pass-Inward',
+  'Gate-Pass-Outwards',
+  'Non-Rental-Hour-Activity',
+];
+
+List securityCardTitle = [
+  'Store Renovation ',
+  'Security',
+  'Gate Pass Inward',
+  'Gate Pass Outwards',
+];
+
+List securityCardImages = [
+  'assets/home/renovation.svg',
+  'assets/home/security.svg',
+  'assets/home/gate_pass_inward.svg',
+  'assets/home/gate_pass_outward.svg',
+];
+
+List securityCardHeaders = [
+  'Store-Renovation',
+  'Security',
+  'Gate-Pass-Inward',
+  'Gate-Pass-Outwards',
+];
+
+List maintainanceCardTitle = [
+  'Maintainance',
+  'Non-Retail Hour Activity',
+];
+
+List maintainanceCardImages = [
+  'assets/home/maintenance.svg',
+  'assets/home/non_retail.svg',
+];
+
+List maintainanceCardHeaders = [
+  'Maintainance',
+  'Non-Rental-Hour-Activity',
+];
+
 List<SalomonBottomBarItem> items = [
   SalomonBottomBarItem(
     icon: SvgPicture.asset('assets/nav_bar/home.svg'),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:squareone_admin/ui/component/colors.dart';
 import 'package:squareone_admin/ui/views/splash/splash_controller.dart';
 
 class SplashView extends StatelessWidget {
@@ -14,7 +15,7 @@ class SplashView extends StatelessWidget {
     return Scaffold(
       body: GetBuilder<SplashController>(
           init: Get.put<SplashController>(SplashController()),
-          builder: (context) {
+          builder: (controller) {
             return Container(
               width: width,
               height: height,
@@ -69,6 +70,12 @@ class SplashView extends StatelessWidget {
                       ),
                     ),
                     const Spacer(),
+                    !controller.isloadin.value
+                        // ignore: prefer_const_constructors
+                        ? SizedBox(height: 0)
+                        : CircularProgressIndicator(
+                            color: redColor,
+                          ),
                     const Spacer(),
                   ],
                 ),

@@ -33,12 +33,16 @@ class AddDepartmentController extends GetxController {
         emailController.text.isNotEmpty &
         passwordController.text.isNotEmpty) {
       isLoading.value = true;
-      return firebaseFirestore.collection('Depart Members').add({
-        'Outlet Name': nameController.text.trim(),
+      return firebaseFirestore
+          .collection('Depart Members')
+          .doc(emailController.text)
+          .set({
+        'Name': nameController.text.trim(),
         'Contact Number': contactController.text.trim(),
         'Email': emailController.text.trim(),
         'Password': passwordController.text.trim(),
         "Department": selectedOutlet,
+        'token': '',
       }).whenComplete(() {
         try {
           auth
@@ -50,10 +54,7 @@ class AddDepartmentController extends GetxController {
             contactController.clear();
             emailController.clear();
             passwordController.clear();
-            getDialog(
-                    title: 'Success',
-                    desc: 'Your Ticket Has Been Created Successfully'
-                        'You Will be Contacted Soon.')
+            getDialog(title: 'Success', desc: 'Member Added Successfully.')
                 .then((value) => Get.offAll(() => const HomeView()));
           });
         } on FirebaseException catch (e) {

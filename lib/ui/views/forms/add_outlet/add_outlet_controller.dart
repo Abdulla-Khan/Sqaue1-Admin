@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 import '../../../component/dialog.dart';
+import '../../home/home_view.dart';
 
 class AddOutletController extends GetxController {
   RxBool isLoading = false.obs;
@@ -46,10 +47,8 @@ class AddOutletController extends GetxController {
             emailController.clear();
             passwordController.clear();
             numberController.clear();
-            getDialog(
-                title: 'Success',
-                desc: 'Your Ticket Has Been Created Successfully'
-                    'You Will be Contacted Soon.');
+            getDialog(title: 'Success', desc: 'Outlet Added Successfully.')
+                .then((value) => Get.offAll(() => const HomeView()));
           });
         } on FirebaseException catch (e) {
           Get.snackbar('Operation Failed', '');
