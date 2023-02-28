@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:squareone_admin/ui/views/home/home_view.dart';
 
 import '../../../component/dialog.dart';
+import '../../home/admin/admin_home_view.dart';
 
 class AddDepartmentController extends GetxController {
   RxBool isLoading = false.obs;
@@ -55,7 +55,7 @@ class AddDepartmentController extends GetxController {
             emailController.clear();
             passwordController.clear();
             getDialog(title: 'Success', desc: 'Member Added Successfully.')
-                .then((value) => Get.offAll(() => const HomeView()));
+                .then((value) => Get.offAll(() => const AdminHomeView()));
           });
         } on FirebaseException catch (e) {
           Get.snackbar('Operation Failed', '');

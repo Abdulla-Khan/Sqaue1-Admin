@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+import 'package:squareone_admin/ui/views/forms/add_depart_member/add_depart_member_view.dart';
+import 'package:squareone_admin/ui/views/home/maintainance/maintainance_view.dart';
+import 'package:squareone_admin/ui/views/home/security/security_view.dart';
+import 'package:squareone_admin/ui/views/notifications/notifications_view.dart';
+import 'package:squareone_admin/ui/views/profile/profile_view.dart';
+
+import '../views/home/admin/home_view.dart';
 
 Color redColor = const Color(0xffC12934);
 Color greenColor = const Color(0xFFDEFFE5);
@@ -71,7 +78,21 @@ List maintainanceCardHeaders = [
   'Non-Rental-Hour-Activity',
 ];
 
-List<SalomonBottomBarItem> items = [
+List profileImg = [
+  'assets/home/ticket.svg',
+  'assets/home/ticket.svg',
+  'assets/profile/outlet.svg',
+  'assets/profile/profile.svg'
+];
+
+List profileText = [
+  'Closed Tickets',
+  'In Progress Tickets',
+  'All Outlets',
+  'All Departments',
+];
+
+List<SalomonBottomBarItem> adminItems = [
   SalomonBottomBarItem(
     icon: SvgPicture.asset('assets/nav_bar/home.svg'),
     title: const Text(
@@ -100,15 +121,70 @@ List<SalomonBottomBarItem> items = [
     title: const Text('Profile'),
   ),
 ];
-final pages = [
-  // const Home(),
-  // const NotificationsView(),
-  // const WorkersView(),
-  // const ProfileView(),
+
+List<SalomonBottomBarItem> maintainanceItems = [
+  SalomonBottomBarItem(
+    icon: SvgPicture.asset('assets/nav_bar/home.svg'),
+    title: const Text(
+      'Home',
+      style: TextStyle(
+        color: Colors.black,
+      ),
+    ),
+  ),
+  SalomonBottomBarItem(
+    icon: SvgPicture.asset('assets/nav_bar/notification.svg'),
+    title: const Text(
+      'Notification',
+      style: TextStyle(fontSize: 11),
+    ),
+  ),
+  SalomonBottomBarItem(
+    icon: SvgPicture.asset('assets/nav_bar/profile.svg'),
+    title: const Text('Profile'),
+  ),
 ];
 
-final List profileCardImages = [
-  'assets/profile/profile_1.svg',
-  'assets/profile/profile_2.svg',
-  'assets/profile/profile_3.svg',
+List<SalomonBottomBarItem> securityItems = [
+  SalomonBottomBarItem(
+    icon: SvgPicture.asset('assets/nav_bar/home.svg'),
+    title: const Text(
+      'Home',
+      style: TextStyle(
+        color: Colors.black,
+      ),
+    ),
+  ),
+  SalomonBottomBarItem(
+    icon: SvgPicture.asset('assets/nav_bar/notification.svg'),
+    title: const Text(
+      'Notification',
+      style: TextStyle(fontSize: 11),
+    ),
+  ),
+  SalomonBottomBarItem(
+    icon: SvgPicture.asset('assets/nav_bar/profile.svg'),
+    title: const Text('Profile'),
+  ),
+];
+
+final adminPages = [
+  const HomeView(),
+  const NotificationsView(),
+  const AddDepartmentView(),
+  const ProfileView(),
+];
+
+final maintainancePages = [
+  const MaintainanceView(),
+  const NotificationsView(),
+  // const AddDepartmentView(),
+  const ProfileView(),
+];
+
+final securityPages = [
+  const SecurityView(),
+  const NotificationsView(),
+  // const AddDepartmentView(),
+  const ProfileView(),
 ];

@@ -7,8 +7,8 @@ import '../../../component/buttons.dart';
 import '../../../component/colors.dart';
 import '../../../component/department_tile.dart';
 
-class MaintainanceHomeView extends StatelessWidget {
-  const MaintainanceHomeView({super.key});
+class MaintainanceView extends StatelessWidget {
+  const MaintainanceView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class MaintainanceHomeView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
                       Text(
-                        'Hi Abdullah! Welcome to Square1 ',
+                        'Hi Admin! Welcome to Square1 ',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 15,
@@ -75,9 +75,9 @@ class MaintainanceHomeView extends StatelessWidget {
                 children: [
                   Container(
                     padding:
-                        EdgeInsets.only(top: height * 0.23, left: width * 0.06),
+                        EdgeInsets.only(top: height * 0.03, left: width * 0.06),
                     child: const Text(
-                      ' Total Departments',
+                      'Total Departments',
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
                         color: Colors.black,
@@ -102,79 +102,9 @@ class MaintainanceHomeView extends StatelessWidget {
                               title: maintainanceCardTitle[index],
                               imgUrl: maintainanceCardImages[index],
                               header: maintainanceCardHeaders[index],
-                            );  
+                            );
                           }))
                 ],
-              ),
-            ),
-          ),
-          Align(
-            alignment: const Alignment(0, -0.6),
-            child: SizedBox(
-              width: width * 0.9,
-              height: height * 0.11,
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                elevation: 12,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text('   Add Outlet',
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.black,
-                                fontWeight: FontWeight.w500)),
-                      ],
-                    ),
-                    GestureDetector(
-                        onTap: () => Get.to(() => const AddOutletView()),
-                        child: AddButton(
-                          height: height,
-                          width: width,
-                        ))
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Align(
-            alignment: const Alignment(0, -0.3),
-            child: SizedBox(
-              width: width * 0.9,
-              height: height * 0.11,
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                elevation: 12,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text('   Add Department',
-                            style: TextStyle(
-                                fontSize: 19,
-                                color: Colors.black,
-                                fontWeight: FontWeight.w500)),
-                      ],
-                    ),
-                    GestureDetector(
-                        onTap: () => Get.to(() => const AddDepartmentView()),
-                        child: AddButton(
-                          height: height,
-                          width: width,
-                        ))
-                  ],
-                ),
               ),
             ),
           ),

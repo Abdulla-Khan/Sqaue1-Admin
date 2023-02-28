@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';import '../../../component/buttons.dart';
 
-import '../../../component/buttons.dart';
-
+import 'gate_pass_detail.dart';
 
 class NonRentalActivity extends StatelessWidget {
   const NonRentalActivity({
@@ -99,7 +98,7 @@ class NonRentalActivity extends StatelessWidget {
                   ticektDetailText(head: 'Over Night', text: overNight),
                   ticektDetailText(
                       head: 'Time of Activity', text: timeOfActivity),
-                  ticektDetailText(head: 'Workers', text: workers[0]),
+                  showWorkers(head: 'Workers', text: workers),
                   ticektDetailText(head: 'Outlet Name', text: outlet),
                 ],
               ),

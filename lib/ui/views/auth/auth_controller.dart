@@ -1,15 +1,13 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:squareone_admin/ui/views/home/maintainance/maintainance_view.dart';
-import 'package:squareone_admin/ui/views/home/security/security_view.dart';
 
-import '../home/home_view.dart';
+import '../home/admin/admin_home_view.dart';
+import '../home/maintainance/maintainance_home_view.dart';
+import '../home/security/security_home_view.dart';
 
 class LoginController extends GetxController {
   TextEditingController emailController = TextEditingController();
@@ -78,10 +76,10 @@ class LoginController extends GetxController {
 
           break;
         case 'Operations':
-          Get.offAll(() => const HomeView());
+          Get.offAll(() => const AdminHomeView());
           break;
         case 'Admin':
-          Get.offAll(() => const HomeView());
+          Get.offAll(() => const AdminHomeView());
           break;
         // break;
       }

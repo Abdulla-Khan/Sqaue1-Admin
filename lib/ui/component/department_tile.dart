@@ -29,7 +29,7 @@ class DepartmentTile extends StatelessWidget {
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           return SizedBox(
             width: width / 2.22,
-            height: height / 4.5,
+            height: height / 1,
             child: Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
@@ -59,7 +59,7 @@ class DepartmentTile extends StatelessWidget {
                         ),
                         Container(
                           margin: const EdgeInsets.only(left: 3),
-                          width: width * 0.25,
+                          width: width * 0.28,
                           child: Text(title,
                               style: const TextStyle(
                                   fontSize: 14,
@@ -68,12 +68,12 @@ class DepartmentTile extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 7),
                     Text(
-                      '     Total Active Tickets',
+                      '    Total Active Tickets',
                       style: TextStyle(
                         color: greyTextColor,
-                        fontSize: 14,
+                        fontSize: 13,
                       ),
                     ),
                     const SizedBox(height: 10),

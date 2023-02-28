@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../component/buttons.dart';
 
 class GateInwardDetails extends StatelessWidget {

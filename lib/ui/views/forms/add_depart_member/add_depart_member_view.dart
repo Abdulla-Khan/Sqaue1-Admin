@@ -4,7 +4,6 @@ import 'package:squareone_admin/ui/component/buttons.dart';
 import 'package:squareone_admin/ui/component/dropdown_feild.dart';
 import 'package:squareone_admin/ui/component/text_feilds.dart';
 import 'package:squareone_admin/ui/views/forms/add_depart_member/add_depart_controller.dart';
-import 'package:squareone_admin/ui/views/forms/add_outlet/add_outlet_controller.dart';
 
 class AddDepartmentView extends StatelessWidget {
   const AddDepartmentView({super.key});

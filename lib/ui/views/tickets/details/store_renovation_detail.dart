@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../component/buttons.dart';
-
+import 'gate_pass_detail.dart';
 
 class RenovationTicektDetails extends StatelessWidget {
   const RenovationTicektDetails(
@@ -102,7 +102,7 @@ class RenovationTicektDetails extends StatelessWidget {
                   ticektDetailText(head: 'Over Night', text: overNight),
                   ticektDetailText(
                       head: 'Time of Activity', text: timeOfActivity),
-                  ticektDetailText(head: 'Workers', text: workers[0]),
+                  showWorkers(head: 'Workers', text: workers[0]),
                   ticektDetailText(head: 'Outlet Name', text: outlet),
                 ],
               ),

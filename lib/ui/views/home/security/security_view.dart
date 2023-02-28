@@ -7,8 +7,8 @@ import '../../../component/buttons.dart';
 import '../../../component/colors.dart';
 import '../../../component/department_tile.dart';
 
-class SecurityHomeView extends StatelessWidget {
-  const SecurityHomeView({super.key});
+class SecurityView extends StatelessWidget {
+  const SecurityView({super.key});
 
   @override
   Widget build(BuildContext context) {

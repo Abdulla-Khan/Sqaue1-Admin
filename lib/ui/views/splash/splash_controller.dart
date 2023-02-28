@@ -5,10 +5,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:squareone_admin/ui/views/home/home_view.dart';
 
 import '../auth/auth_view.dart';
+import '../home/admin/admin_home_view.dart';
+import '../home/maintainance/maintainance_home_view.dart';
 import '../home/maintainance/maintainance_view.dart';
+import '../home/security/security_home_view.dart';
 import '../home/security/security_view.dart';
 
 class SplashController extends GetxController {
@@ -38,7 +40,7 @@ class SplashController extends GetxController {
         FirebaseAuth.instance
             .signInWithEmailAndPassword(email: email, password: password);
         if (FirebaseAuth.instance.currentUser!.uid.isNotEmpty) {
-          routeToHome(email);
+          Get.offAll(() => const AdminHomeView());
         }
       } on FirebaseAuthException catch (e) {
         log(e.toString());
@@ -63,12 +65,11 @@ class SplashController extends GetxController {
 
           break;
         case 'Operations':
-          Get.offAll(() => const HomeView());
+          Get.offAll(() => const AdminHomeView());
           break;
         case 'Admin':
-          Get.offAll(() => const HomeView());
+          Get.offAll(() => const AdminHomeView());
           break;
-        // break;
       }
     });
   }

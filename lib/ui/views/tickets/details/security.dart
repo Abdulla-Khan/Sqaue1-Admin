@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../component/buttons.dart';
-
+import 'gate_pass_detail.dart';
 
 class SecurityTicektDetails extends StatelessWidget {
   const SecurityTicektDetails(
@@ -50,7 +50,7 @@ class SecurityTicektDetails extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: Container(
           width: width,
-          height: height / 2,
+          height: height / 1.9,
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
           child: Card(
             shape:
@@ -95,7 +95,7 @@ class SecurityTicektDetails extends StatelessWidget {
                   ticektDetailText(head: 'Services', text: services),
                   ticektDetailText(
                       head: 'Time of Activity', text: timeOfActivity),
-                  ticektDetailText(head: 'Workers', text: workers[0]),
+                  showWorkers(head: 'Workers', text: workers),
                   ticektDetailText(head: 'Outlet Name', text: outlet),
                 ],
               ),

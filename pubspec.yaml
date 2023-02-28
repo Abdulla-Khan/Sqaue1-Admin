@@ -41,7 +41,9 @@ dependencies:
   get: ^4.6.5
   get_storage: ^2.0.3
   flutter_svg: ^2.0.2
+  flutter_local_notifications: ^8.2.0
   salomon_bottom_bar: ^3.3.1
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:
@@ -67,6 +69,8 @@ flutter:
   assets:
     - assets/splash/
     - assets/home/
+    - assets/nav_bar/
+    - assets/profile/
 
   fonts:
     - family: Poppins
