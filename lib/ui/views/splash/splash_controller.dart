@@ -9,9 +9,7 @@ import 'package:get_storage/get_storage.dart';
 import '../auth/auth_view.dart';
 import '../home/admin/admin_home_view.dart';
 import '../home/maintainance/maintainance_home_view.dart';
-import '../home/maintainance/maintainance_view.dart';
 import '../home/security/security_home_view.dart';
-import '../home/security/security_view.dart';
 
 class SplashController extends GetxController {
   RxBool isloadin = false.obs;

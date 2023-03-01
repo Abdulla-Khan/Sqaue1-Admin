@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -13,10 +12,14 @@ class AddNotificationsController extends GetxController {
   TextEditingController bodyController = TextEditingController();
   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   sendNotifications() async {
+    CollectionReference approvalNotification =
+        FirebaseFirestore.instance.collection('Approval-Notification');
+
     CollectionReference notification =
-        FirebaseFirestore.instance.collection('notification');
+        FirebaseFirestore.instance.collection('Notification');
+
     QuerySnapshot querySnapshot =
-        await FirebaseFirestore.instance.collection("users").get();
+        await FirebaseFirestore.instance.collection("Outlets").get();
     firebaseFirestore
         .collection('Depart Members')
         .doc('admin@gmail.com')
@@ -28,19 +31,23 @@ class AddNotificationsController extends GetxController {
           for (int i = 0; i < querySnapshot.docs.length; i++) {
             var a = querySnapshot.docs[i];
             // print(a.get('token'));
+            await notification.add({
+              'subject': titleController.text,
+              'description': bodyController.text,
+              'time': DateTime.now(),
+            });
             sendMessage(
                 a.get('token'), bodyController.text, titleController.text);
           }
           break;
-        default:
-          await notification.add({
+        case "Maintainance":
+        case "Security":
+          await approvalNotification.add({
             'subject': titleController.text,
             'description': bodyController.text,
             'time': DateTime.now(),
           });
       }
-
-      // if( == )
     });
   }
 

@@ -17,7 +17,7 @@ class NotificationController extends GetxController {
         .doc(FirebaseAuth.instance.currentUser!.email)
         .get()
         .then((value) {
-      permission = value.data()!['Department'];
+      permission.value = value.data()!['Department'];
     });
   }
 }
