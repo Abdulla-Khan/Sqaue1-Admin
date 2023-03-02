@@ -12,13 +12,13 @@ class AddNotificationsController extends GetxController {
   TextEditingController titleController = TextEditingController();
   TextEditingController bodyController = TextEditingController();
   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-    GetStorage storage = GetStorage(); 
-  String email= ''; 
-   @override
+  GetStorage storage = GetStorage();
+  String email = '';
+  @override
   void onReady() {
     email = storage.read('email');
-    print(email);
   }
+
   sendNotifications() async {
     CollectionReference approvalNotification =
         FirebaseFirestore.instance.collection('Approval-Notification');
@@ -38,7 +38,6 @@ class AddNotificationsController extends GetxController {
         case "Operations":
           for (int i = 0; i < querySnapshot.docs.length; i++) {
             var a = querySnapshot.docs[i];
-            // print(a.data());
             await notification.add({
               'subject': titleController.text,
               'description': bodyController.text,
