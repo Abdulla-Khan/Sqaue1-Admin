@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "627279672316",
+    "project_id": "square1-7feeb",
+    "storage_bucket": "square1-7feeb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:627279672316:android:0e10c62ef04453a2ba3879",
+        "android_client_info": {
+          "package_name": "com.example.square1_user"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "627279672316-sro9vp870epppt51s16lm3eto4j7cmj3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnfJeatUjOLHW0RA0EI8cf8kp-Z9Ex5ZA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "627279672316-sro9vp870epppt51s16lm3eto4j7cmj3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "627279672316-uu16q8lh9p3f18ptusdc21pp9vh7g8cq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.square1User"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:627279672316:android:ac4279543c91d611ba3879",
+        "android_client_info": {
+          "package_name": "com.example.squareone_admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "627279672316-sro9vp870epppt51s16lm3eto4j7cmj3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnfJeatUjOLHW0RA0EI8cf8kp-Z9Ex5ZA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "627279672316-sro9vp870epppt51s16lm3eto4j7cmj3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "627279672316-uu16q8lh9p3f18ptusdc21pp9vh7g8cq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.square1User"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
