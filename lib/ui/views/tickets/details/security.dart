@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:squareone_admin/ui/views/tickets/tickets_controller.dart';
 
 import '../../../component/buttons.dart';
 import 'gate_pass_detail.dart';
@@ -15,7 +17,7 @@ class SecurityTicektDetails extends StatelessWidget {
       required this.workers,
       required this.outlet,
       required this.status,
-      required this.head});
+      required this.head, required this.ticketId, required this.uid});
   final String head;
   final String activity;
   final String dateOfActivity;
@@ -26,6 +28,8 @@ class SecurityTicektDetails extends StatelessWidget {
   final List workers;
   final String outlet;
   final bool status;
+  final String ticketId;
+  final String uid;
 
   @override
   Widget build(BuildContext context) {
@@ -48,59 +52,74 @@ class SecurityTicektDetails extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(10),
-        child: Container(
-          width: width,
-          height: height / 1.9,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
-          child: Card(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-            elevation: 10,
-            child: Padding(
-              padding: const EdgeInsets.all(12),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Column(
+          children: [
+            Container(
+              width: width,
+              height: height / 1.9,
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(12)),
+              child: Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12)),
+                elevation: 10,
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Ticket For $head',
-                        style: const TextStyle(
-                          fontSize: 19,
-                        ),
-                      ),
-                      CircleAvatar(
-                          backgroundColor: status
-                              ? const Color(0xFFFE0D0D)
-                              : const Color(0xFF12CA37),
-                          radius: width * 0.028,
-                          child: CircleAvatar(
-                              backgroundColor: Colors.white,
-                              radius: width * 0.021,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Ticket For $head',
+                            style: const TextStyle(
+                              fontSize: 19,
+                            ),
+                          ),
+                          CircleAvatar(
+                              backgroundColor: status
+                                  ? const Color(0xFFFE0D0D)
+                                  : const Color(0xFF12CA37),
+                              radius: width * 0.028,
                               child: CircleAvatar(
-                                backgroundColor: status
-                                    ? const Color(0xFFFE0D0D)
-                                    : const Color(0xFF12CA37),
-                                radius: width * 0.017,
-                              )))
+                                  backgroundColor: Colors.white,
+                                  radius: width * 0.021,
+                                  child: CircleAvatar(
+                                    backgroundColor: status
+                                        ? const Color(0xFFFE0D0D)
+                                        : const Color(0xFF12CA37),
+                                    radius: width * 0.017,
+                                  )))
+                        ],
+                      ),
+                      ticektDetailText(head: 'Activity Type', text: activity),
+                      ticektDetailText(
+                          head: 'Date of Activity', text: dateOfActivity),
+                      ticektDetailText(head: 'Duration', text: duration),
+                      ticektDetailText(head: 'Over Night', text: overNight),
+                      ticektDetailText(head: 'Services', text: services),
+                      ticektDetailText(
+                          head: 'Time of Activity', text: timeOfActivity),
+                      showWorkers(head: 'Workers', text: workers),
+                      ticektDetailText(head: 'Outlet Name', text: outlet),
                     ],
                   ),
-                  ticektDetailText(head: 'Activity Type', text: activity),
-                  ticektDetailText(
-                      head: 'Date of Activity', text: dateOfActivity),
-                  ticektDetailText(head: 'Duration', text: duration),
-                  ticektDetailText(head: 'Over Night', text: overNight),
-                  ticektDetailText(head: 'Services', text: services),
-                  ticektDetailText(
-                      head: 'Time of Activity', text: timeOfActivity),
-                  showWorkers(head: 'Workers', text: workers),
-                  ticektDetailText(head: 'Outlet Name', text: outlet),
-                ],
+                ),
               ),
             ),
-          ),
+            GetBuilder<TicketController>(
+                init: Get.put<TicketController>(TicketController()),
+                builder: (controller) {
+                  return LoginButton(
+                    width: width,
+                    height: height,
+                    function:()=> controller.closeTicket(uid, ticketId),
+                    text: 'Close Ticket',
+                  );
+                })
+          ],
         ),
       ),
     );

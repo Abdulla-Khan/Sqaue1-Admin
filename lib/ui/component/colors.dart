@@ -75,7 +75,7 @@ List maintainanceCardImages = [
 
 List maintainanceCardHeaders = [
   'Maintainance',
-  'Non-Rental-Hour-Activity',
+  'Non-Retail-Hour-Activity',
 ];
 
 List profileImg = [

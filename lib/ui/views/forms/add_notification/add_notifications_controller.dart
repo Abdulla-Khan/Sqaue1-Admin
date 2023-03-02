@@ -57,39 +57,39 @@ class AddNotificationsController extends GetxController {
       }
     });
   }
+}
 
-  static Future sendMessage(
-    token,
-    String body,
-    String title,
-  ) async {
-    try {
-      await http
-          .post(Uri.parse('https://fcm.googleapis.com/fcm/send'),
-              headers: <String, String>{
-                'Content-Type': 'application/json',
-                'Authorization':
-                    'key=AAAAkgzIM_w:APA91bEghe1p0x4SW_1lqwYr74-mOFpxpzyfPAYMSCH2MzEXEdjn8Fxp1rNbAUZclUgxgkdtzkOAjAyB_z9uK-aoP75GaI8PsIFqp7Z9GIWIjZMU_EU7ubDvE0K_1HZNg24f9VcdWZYv',
+Future sendMessage(
+  token,
+  String body,
+  String title,
+) async {
+  try {
+    await http
+        .post(Uri.parse('https://fcm.googleapis.com/fcm/send'),
+            headers: <String, String>{
+              'Content-Type': 'application/json',
+              'Authorization':
+                  'key=AAAAkgzIM_w:APA91bEghe1p0x4SW_1lqwYr74-mOFpxpzyfPAYMSCH2MzEXEdjn8Fxp1rNbAUZclUgxgkdtzkOAjAyB_z9uK-aoP75GaI8PsIFqp7Z9GIWIjZMU_EU7ubDvE0K_1HZNg24f9VcdWZYv',
+            },
+            body: jsonEncode(<String, dynamic>{
+              'priority': 'high',
+              'data': <String, dynamic>{
+                'click_action': 'FLUTTER_NOTIFICATION_CLICK',
+                'status': 'done',
+                'body': body,
+                'title': title,
               },
-              body: jsonEncode(<String, dynamic>{
-                'priority': 'high',
-                'data': <String, dynamic>{
-                  'click_action': 'FLUTTER_NOTIFICATION_CLICK',
-                  'status': 'done',
-                  'body': body,
-                  'title': title,
-                },
-                'notification': <String, dynamic>{
-                  'title': title,
-                  'body': body,
-                  "android_channel_id": 'tttt'
-                },
-                "to": token
-              }))
-          .whenComplete(() => log('sucess'));
-    } catch (e) {
-      // ScaffoldMessenger.of(context)
-      // .showSnackBar(SnackBar(content: Text(e.toString())));
-    }
+              'notification': <String, dynamic>{
+                'title': title,
+                'body': body,
+                "android_channel_id": 'tttt'
+              },
+              "to": token
+            }))
+        .whenComplete(() => log('sucess'));
+  } catch (e) {
+    // ScaffoldMessenger.of(context)
+    // .showSnackBar(SnackBar(content: Text(e.toString())));
   }
 }

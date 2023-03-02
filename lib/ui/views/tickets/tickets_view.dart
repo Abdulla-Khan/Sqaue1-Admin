@@ -132,7 +132,7 @@ class TicketsView extends StatelessWidget {
                                     ' ${asyncSnapshot.data!.docs[index]['Unit']}',
                               ),
                             );
-                          case 'Non-Rental-Hour-Activity':
+                          case 'Non-Retail-Hour-Activity':
                             return GestureDetector(
                                 onTap: () => Get.to(
                                       () => NonRentalActivity(
@@ -189,6 +189,10 @@ class TicketsView extends StatelessWidget {
                                         .data!.docs[index]['Time of Activity'],
                                     workers: asyncSnapshot.data!.docs[index]
                                         ['Worker'],
+                                    ticketId: asyncSnapshot.data!.docs[index]
+                                        ['Ticket Number'],
+                                    uid: asyncSnapshot.data!.docs[index]
+                                        ['User ID'],
                                   )),
                               child: InProgressTicketTile(
                                   text: asyncSnapshot.data!.docs[index]
@@ -221,6 +225,10 @@ class TicketsView extends StatelessWidget {
                                         .data!.docs[index]['Time of Activity'],
                                     workers: asyncSnapshot.data!.docs[index]
                                         ['Worker'],
+                                    ticketId: asyncSnapshot.data!.docs[index]
+                                        ['Ticket Number'],
+                                    uid: asyncSnapshot.data!.docs[index]
+                                        ['User ID'],
                                   )),
                               child: InProgressTicketTile(
                                   text: asyncSnapshot.data!.docs[index]
