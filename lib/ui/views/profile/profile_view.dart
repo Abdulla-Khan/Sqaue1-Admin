@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter/material.dart'; 
 import 'package:get/get.dart';
 import 'package:squareone_admin/ui/component/colors.dart';
 import 'package:squareone_admin/ui/component/profile_Card.dart';
@@ -115,10 +113,15 @@ class ProfileView extends StatelessWidget {
                                   function: () {
                                     switch (index) {
                                       case 0:
-                                        Get.to(() => const ClosedTicketsView());
+                                        Get.to(() => const ClosedTicketsView(
+                                              closed: false,
+                                            ));
 
                                         break;
                                       case 1:
+                                        Get.to(() => const ClosedTicketsView(
+                                              closed: true,
+                                            ));
                                         break;
                                       case 2:
                                         Get.to(() => const OutletView());

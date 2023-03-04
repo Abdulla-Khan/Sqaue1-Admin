@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:squareone_admin/ui/component/in_progress_tile.dart';
 import 'package:squareone_admin/ui/views/tickets/tickets_controller.dart';
 
@@ -13,7 +12,8 @@ import 'details/security.dart';
 import 'details/store_renovation_detail.dart';
 
 class ClosedTicketsView extends StatelessWidget {
-  const ClosedTicketsView({super.key});
+  const ClosedTicketsView({super.key, required this.closed});
+  final bool closed;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -25,9 +25,10 @@ class ClosedTicketsView extends StatelessWidget {
             height: height,
             width: width,
           ),
-          title: const Text(
-            'Closed Tickets',
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
+          title: Text(
+            closed ? 'Active Tickets' : 'Closed Tickets',
+            style: const TextStyle(
+                color: Colors.black, fontWeight: FontWeight.w500),
           ),
           automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
@@ -39,18 +40,18 @@ class ClosedTicketsView extends StatelessWidget {
                   stream: controller.depart.value == 'Admin'
                       ? FirebaseFirestore.instance
                           .collection('Tickets')
-                          .where('Status', isEqualTo: true)
+                          .where('Status', isEqualTo: closed)
                           // .where('Department', isEqualTo: controller.depart.value)
                           .snapshots()
                       : controller.depart.value == 'Operations'
                           ? FirebaseFirestore.instance
                               .collection('Tickets')
-                              .where('Status', isEqualTo: true)
+                              .where('Status', isEqualTo: closed)
                               // .where('Department', isEqualTo: controller.depart.value)
                               .snapshots()
                           : FirebaseFirestore.instance
                               .collection('Tickets')
-                              .where('Status', isEqualTo: true)
+                              .where('Status', isEqualTo: closed)
                               .where('Department',
                                   isEqualTo: controller.depart.value)
                               .snapshots(),
