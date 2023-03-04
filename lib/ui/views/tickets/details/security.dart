@@ -19,8 +19,11 @@ class SecurityTicektDetails extends StatelessWidget {
       required this.status,
       required this.head,
       required this.ticketId,
-      required this.uid});
+      required this.uid,
+      required this.showButton});
   final String head;
+  final bool showButton;
+
   final String activity;
   final String dateOfActivity;
   final String duration;
@@ -112,16 +115,19 @@ class SecurityTicektDetails extends StatelessWidget {
                   ),
                 ),
               ),
-              GetBuilder<TicketController>(
-                  init: Get.put<TicketController>(TicketController()),
-                  builder: (controller) {
-                    return LoginButton(
-                      width: width,
-                      height: height,
-                      function: () => controller.closeTicket(uid, ticketId),
-                      text: 'Close Ticket',
-                    );
-                  })
+              showButton
+                  ? GetBuilder<TicketController>(
+                      init: Get.put<TicketController>(TicketController()),
+                      builder: (controller) {
+                        return LoginButton(
+                          width: width,
+                          height: height,
+                          function: () =>
+                              controller.closeTicket(uid, ticketId, head),
+                          text: 'Close Ticket',
+                        );
+                      })
+                  : const SizedBox(height: 0),
             ],
           ),
         ),

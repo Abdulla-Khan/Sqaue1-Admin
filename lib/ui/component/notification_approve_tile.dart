@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:squareone_admin/ui/views/forms/add_notification/add_notifications_controller.dart';
+import 'package:squareone_admin/ui/views/notifications/notifications_controller.dart';
 
 import 'buttons.dart';
 
@@ -9,18 +12,21 @@ class ApproveNotificationTile extends StatelessWidget {
     required this.width,
     required this.height,
     required this.date,
+    required this.body,
   }) : super(key: key);
 
   final double width;
   final double height;
-  final String? text;
-  final String? date;
+  final String text;
+  final String body;
+
+  final String date;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: width / 1.1,
-      height: height / 7.1,
+      height: height / 6.8,
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         elevation: 10,
@@ -40,7 +46,7 @@ class ApproveNotificationTile extends StatelessWidget {
                       SizedBox(
                         width: width * 0.6,
                         child: Text(
-                          text!,
+                          text,
                           overflow: TextOverflow.fade,
                           softWrap: false,
                         ),
@@ -53,7 +59,7 @@ class ApproveNotificationTile extends StatelessWidget {
                             size: 12,
                           ),
                           Text(
-                            date!.toString(),
+                            date.toString(),
                             style: const TextStyle(color: Color(0xFFB8B8D2)),
                           )
                         ],
@@ -62,28 +68,35 @@ class ApproveNotificationTile extends StatelessWidget {
                   ),
                 ],
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  GestureDetector(
-                    onTap: () {},
-                    child: const Text(
-                      'Approve      ',
-                      style: TextStyle(color: Colors.green, fontSize: 14),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      print('delcone');
-                    },
-                    child: const Text(
-                      'Decline',
-                      style: TextStyle(color: Colors.red, fontSize: 14),
-                    ),
-                  ),
-                ],
-              )
+              GetBuilder<AddNotificationsController>(
+                  init: Get.put<AddNotificationsController>(
+                      AddNotificationsController()),
+                  builder: (controller) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            controller.titleController.text = text;
+                            controller.bodyController.text = body;
+                            controller.sendNotifications();
+                          },
+                          child: const Text(
+                            'Approve      ',
+                            style: TextStyle(color: Colors.green, fontSize: 14),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () => controller.delete(text),
+                          child: const Text(
+                            'Decline',
+                            style: TextStyle(color: Colors.red, fontSize: 14),
+                          ),
+                        ),
+                      ],
+                    );
+                  })
             ],
           ),
         ),

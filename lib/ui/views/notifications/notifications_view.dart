@@ -81,7 +81,7 @@ class NotificationsView extends StatelessWidget {
                             textAlign: TextAlign.right,
                           ),
                           SizedBox(
-                            height: height / 1.7,
+                            height: height / 1.8,
                             width: width,
                             child: StreamBuilder(
                                 stream: FirebaseFirestore.instance
@@ -113,6 +113,8 @@ class NotificationsView extends StatelessWidget {
                                               height: height,
                                               text: asyncSnapshot
                                                   .data!.docs[index]['subject'],
+                                              body: asyncSnapshot.data!
+                                                  .docs[index]['description'],
                                               date:
                                                   '${dateTime.hour}:${dateTime.minute}:${dateTime.second}',
                                             );

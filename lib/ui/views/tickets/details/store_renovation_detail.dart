@@ -18,8 +18,11 @@ class RenovationTicektDetails extends StatelessWidget {
       required this.dateOfActivityFrom,
       required this.dateOfActivityTo,
       required this.comments,
-      required this.use, required this.uid, required this.ticketId});
-
+      required this.use,
+      required this.uid,
+      required this.ticketId,
+      required this.showButton});
+  final bool showButton;
   final String activity;
   final String dateOfActivityFrom;
   final String dateOfActivityTo;
@@ -61,8 +64,8 @@ class RenovationTicektDetails extends StatelessWidget {
               ConstrainedBox(
                 constraints: BoxConstraints(
                   minWidth: width,
-                  minHeight: height * 1.2,
-                  maxHeight: height * 1.4,
+                  minHeight: height * 0.6,
+                  maxHeight: height * 0.7,
                 ),
                 child: Card(
                   shape: RoundedRectangleBorder(
@@ -104,29 +107,33 @@ class RenovationTicektDetails extends StatelessWidget {
                             head: 'Date of Activity From',
                             text: dateOfActivityFrom),
                         ticektDetailText(
-                            head: 'Date of Activity To', text: dateOfActivityTo),
+                            head: 'Date of Activity To',
+                            text: dateOfActivityTo),
                         ticektDetailText(head: 'Comments', text: comments),
                         ticektDetailText(head: 'Use', text: use),
                         ticektDetailText(head: 'Over Night', text: overNight),
                         ticektDetailText(
                             head: 'Time of Activity', text: timeOfActivity),
-                        showWorkers(head: 'Workers', text: workers[0]),
+                        showWorkers(head: 'Workers', text: workers),
                         ticektDetailText(head: 'Outlet Name', text: outlet),
                       ],
                     ),
                   ),
                 ),
               ),
-              GetBuilder<TicketController>(
-                  init: Get.put<TicketController>(TicketController()),
-                  builder: (controller) {
-                    return LoginButton(
-                      width: width,
-                      height: height,
-                      function: () => controller.closeTicket(uid, ticketId),
-                      text: 'Close Ticket',
-                    );
-                  })
+              showButton
+                  ? GetBuilder<TicketController>(
+                      init: Get.put<TicketController>(TicketController()),
+                      builder: (controller) {
+                        return LoginButton(
+                          width: width,
+                          height: height,
+                          function: () => controller.closeTicket(
+                              uid, ticketId, 'Ticket For Renovation'),
+                          text: 'Close Ticket',
+                        );
+                      })
+                  : const SizedBox(height: 0),
             ],
           ),
         ),

@@ -20,6 +20,10 @@ class AddNotificationsController extends GetxController {
     email = storage.read('email');
   }
 
+  delete(subject) {
+    firebaseFirestore.collection('Approval-Notification').doc(subject).delete();
+  }
+
   sendNotifications() async {
     CollectionReference approvalNotification =
         FirebaseFirestore.instance.collection('Approval-Notification');
@@ -37,8 +41,6 @@ class AddNotificationsController extends GetxController {
           .doc(email)
           .get()
           .then((value) async {
-        print(value.data()!['Department']);
-
         switch (value.data()!['Department']) {
           case 'Admin':
           case "Operations":
@@ -63,7 +65,7 @@ class AddNotificationsController extends GetxController {
             break;
           case "Maintainance":
           case "Security":
-            await approvalNotification.add({
+            await approvalNotification.doc(titleController.text).set({
               'subject': titleController.text,
               'description': bodyController.text,
               'time': DateTime.now(),
@@ -110,7 +112,6 @@ Future sendMessage(
             }))
         .whenComplete(() => log('sucess'));
   } catch (e) {
-    // ScaffoldMessenger.of(context)
-    // .showSnackBar(SnackBar(content: Text(e.toString())));
+    Get.snackbar('Error', 'Operation couldn\'t be completed');
   }
 }

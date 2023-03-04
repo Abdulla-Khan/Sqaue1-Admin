@@ -20,7 +20,10 @@ class GateInwardDetails extends StatelessWidget {
       required this.outlet,
       required this.status,
       required this.uid,
-      required this.ticketId});
+      required this.ticketId,
+      required this.showButton});
+
+  final bool showButton;
 
   final String particular;
   final String type;
@@ -120,16 +123,19 @@ class GateInwardDetails extends StatelessWidget {
                   ),
                 ),
               ),
-              GetBuilder<TicketController>(
-                  init: Get.put<TicketController>(TicketController()),
-                  builder: (controller) {
-                    return LoginButton(
-                      width: width,
-                      height: height,
-                      function: () => controller.closeTicket(uid, ticketId),
-                      text: 'Close Ticket',
-                    );
-                  })
+              showButton
+                  ? GetBuilder<TicketController>(
+                      init: Get.put<TicketController>(TicketController()),
+                      builder: (controller) {
+                        return LoginButton(
+                          width: width,
+                          height: height,
+                          function: () => controller.closeTicket(
+                              uid, ticketId, 'Ticket For Gate Pass Inwards'),
+                          text: 'Close Ticket',
+                        );
+                      })
+                  : const SizedBox(height: 0),
             ],
           ),
         ),

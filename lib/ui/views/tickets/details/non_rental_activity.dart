@@ -17,8 +17,13 @@ class NonRentalActivity extends StatelessWidget {
     required this.status,
     required this.dateOfActivityFrom,
     required this.dateOfActivityTo,
-    this.comments, required this.uid, required this.ticketId,
+    this.comments,
+    required this.uid,
+    required this.ticketId,
+    required this.showButton,
   });
+  final bool showButton;
+
   final String activity;
   final String dateOfActivityFrom;
   final String dateOfActivityTo;
@@ -100,7 +105,8 @@ class NonRentalActivity extends StatelessWidget {
                             head: 'Date of Activity From',
                             text: dateOfActivityFrom),
                         ticektDetailText(
-                            head: 'Date of Activity To', text: dateOfActivityTo),
+                            head: 'Date of Activity To',
+                            text: dateOfActivityTo),
                         comments == null
                             ? ticektDetailText(head: 'Comments', text: duration)
                             : const SizedBox(height: 0),
@@ -114,16 +120,19 @@ class NonRentalActivity extends StatelessWidget {
                   ),
                 ),
               ),
-              GetBuilder<TicketController>(
-                  init: Get.put<TicketController>(TicketController()),
-                  builder: (controller) {
-                    return LoginButton(
-                      width: width,
-                      height: height,
-                      function: () => controller.closeTicket(uid, ticketId),
-                      text: 'Close Ticket',
-                    );
-                  })
+              showButton
+                  ? GetBuilder<TicketController>(
+                      init: Get.put<TicketController>(TicketController()),
+                      builder: (controller) {
+                        return LoginButton(
+                          width: width,
+                          height: height,
+                          function: () => controller.closeTicket(uid, ticketId,
+                              'Ticket For Non Rental Hour Activity'),
+                          text: 'Close Ticket',
+                        );
+                      })
+                  : const SizedBox(height: 0),
             ],
           ),
         ),
