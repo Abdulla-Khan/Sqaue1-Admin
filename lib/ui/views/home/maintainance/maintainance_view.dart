@@ -97,7 +97,7 @@ class MaintainanceView extends StatelessWidget {
                               onTap: () {
                                 Get.to(() => TicketsView(), arguments: [
                                   maintainanceCardTitle[index],
-                                  maintainanceCardTitle[index]
+                                  maintainanceCardHeaders[index]
                                 ]);
                               },
                               child: DepartmentTile(
@@ -105,7 +105,7 @@ class MaintainanceView extends StatelessWidget {
                                 height: height,
                                 title: maintainanceCardTitle[index],
                                 imgUrl: maintainanceCardImages[index],
-                                header: maintainanceCardTitle[index],
+                                header: maintainanceCardHeaders[index],
                               ),
                             );
                           }))

@@ -88,10 +88,10 @@ class AddDepartmentView extends StatelessWidget {
                                 () => controller.isLoading.value
                                     ? const CircularProgressIndicator()
                                     : LoginButton(
-                                        width: width,
+                                        width: width + 100,
                                         height: height,
                                         function: () => controller.addDepart(),
-                                        text: 'Add Outlet',
+                                        text: 'Add Department',
                                       ),
                               )
                             ],

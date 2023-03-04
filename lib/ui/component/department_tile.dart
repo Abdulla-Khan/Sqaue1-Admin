@@ -25,6 +25,7 @@ class DepartmentTile extends StatelessWidget {
         stream: FirebaseFirestore.instance
             .collection('Tickets')
             .where('header', isEqualTo: header)
+            .where('Status', isEqualTo: true)
             .snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           return SizedBox(

@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:squareone_admin/ui/component/dialog.dart';
 
 class AddNotificationsController extends GetxController {
   RxBool isLoading = false.obs;
@@ -28,34 +29,54 @@ class AddNotificationsController extends GetxController {
 
     QuerySnapshot querySnapshot =
         await FirebaseFirestore.instance.collection("Outlets").get();
-    firebaseFirestore
-        .collection('Depart Members')
-        .doc(email)
-        .get()
-        .then((value) async {
-      switch (value.data()!['Department']) {
-        case 'Admin':
-        case "Operations":
-          for (int i = 0; i < querySnapshot.docs.length; i++) {
-            var a = querySnapshot.docs[i];
-            await notification.add({
+    if (titleController.text.isNotEmpty & bodyController.text.isNotEmpty) {
+      isLoading.value = true;
+
+      await firebaseFirestore
+          .collection('Depart Members')
+          .doc(email)
+          .get()
+          .then((value) async {
+        print(value.data()!['Department']);
+
+        switch (value.data()!['Department']) {
+          case 'Admin':
+          case "Operations":
+            for (int i = 0; i < querySnapshot.docs.length; i++) {
+              var a = querySnapshot.docs[i];
+              await notification.add({
+                'subject': titleController.text,
+                'description': bodyController.text,
+                'time': DateTime.now(),
+              });
+              await sendMessage(
+                      a.get('token'), bodyController.text, titleController.text)
+                  .whenComplete(() {
+                getDialog(
+                    title: 'Sucess', desc: 'Notification Added Sucessfully.');
+
+                titleController.clear();
+                bodyController.clear();
+                isLoading.value = false;
+              });
+            }
+            break;
+          case "Maintainance":
+          case "Security":
+            await approvalNotification.add({
               'subject': titleController.text,
               'description': bodyController.text,
               'time': DateTime.now(),
+            }).whenComplete(() {
+              getDialog(
+                  title: 'Sucess', desc: 'Notification Added Sucessfully.');
+              titleController.clear();
+              bodyController.clear();
+              isLoading.value = false;
             });
-            sendMessage(
-                a.get('token'), bodyController.text, titleController.text);
-          }
-          break;
-        case "Maintainance":
-        case "Security":
-          await approvalNotification.add({
-            'subject': titleController.text,
-            'description': bodyController.text,
-            'time': DateTime.now(),
-          });
-      }
-    });
+        }
+      });
+    }
   }
 }
 

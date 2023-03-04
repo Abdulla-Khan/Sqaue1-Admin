@@ -97,18 +97,19 @@ class AddNotification extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                GestureDetector(
-                                    child: controller.isLoading.value
-                                        ? CircularProgressIndicator(
-                                            color: redColor,
-                                          )
-                                        : LoginButton(
-                                            width: width,
-                                            height: height,
-                                            function: () =>
-                                                controller.sendNotifications(),
-                                            text: 'Submit',
-                                          )),
+                                Obx(
+                                  () => controller.isLoading.value
+                                      ? CircularProgressIndicator(
+                                          color: redColor,
+                                        )
+                                      : LoginButton(
+                                          width: width,
+                                          height: height,
+                                          function: () =>
+                                              controller.sendNotifications(),
+                                          text: 'Submit',
+                                        ),
+                                ),
                               ],
                             ),
                           ),

@@ -14,7 +14,7 @@ class SecurityHomeView extends StatelessWidget {
     return Scaffold(
         body: GetX<SecurityHomeController>(
             init: Get.put<SecurityHomeController>(SecurityHomeController()),
-            builder: (controller) => maintainancePages[controller.index.value]),
+            builder: (controller) => securityPages[controller.index.value]),
         bottomNavigationBar: GetX<SecurityHomeController>(
             init: Get.put<SecurityHomeController>(SecurityHomeController()),
             builder: (controller) => SalomonBottomBar(

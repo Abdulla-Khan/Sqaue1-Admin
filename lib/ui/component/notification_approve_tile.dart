@@ -67,9 +67,7 @@ class ApproveNotificationTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   GestureDetector(
-                    onTap: () {
-                      print('approve');
-                    },
+                    onTap: () {},
                     child: const Text(
                       'Approve      ',
                       style: TextStyle(color: Colors.green, fontSize: 14),

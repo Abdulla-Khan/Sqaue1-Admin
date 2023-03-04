@@ -39,7 +39,7 @@ List homeCardHeaders = [
   'Maintainance',
   'Gate-Pass-Inward',
   'Gate-Pass-Outwards',
-  'Non-Rental-Hour-Activity',
+  'Non-Retail-Hour-Activity',
 ];
 
 List securityCardTitle = [

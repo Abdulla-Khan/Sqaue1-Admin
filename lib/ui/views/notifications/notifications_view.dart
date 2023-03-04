@@ -84,37 +84,40 @@ class NotificationsView extends StatelessWidget {
                             height: height / 1.7,
                             width: width,
                             child: StreamBuilder(
-                              stream: FirebaseFirestore.instance.collection('Approval-Notification').snapshots(),
-                              builder: (context, AsyncSnapshot<QuerySnapshot> asyncSnapshot) {
+                                stream: FirebaseFirestore.instance
+                                    .collection('Approval-Notification')
+                                    .snapshots(),
+                                builder: (context,
+                                    AsyncSnapshot<QuerySnapshot>
+                                        asyncSnapshot) {
+                                  return !asyncSnapshot.hasData
+                                      ? const Center(
+                                          child: CircularProgressIndicator(),
+                                        )
+                                      : ListView.builder(
+                                          scrollDirection: Axis.vertical,
+                                          itemCount:
+                                              asyncSnapshot.data!.docs.length,
+                                          padding: const EdgeInsets.only(
+                                              top: 10, left: 10, right: 10),
+                                          shrinkWrap: true,
+                                          itemBuilder: (context, index) {
+                                            final Timestamp timestamp =
+                                                asyncSnapshot.data!.docs[index]
+                                                    ['time'] as Timestamp;
+                                            final DateTime dateTime =
+                                                timestamp.toDate();
 
-
-
-                                return 
-                                !asyncSnapshot.hasData ? const Center(
-                                  child: CircularProgressIndicator(),
-                                ):
-                                
-                                ListView.builder(
-                                  scrollDirection: Axis.vertical,
-                                  itemCount: asyncSnapshot.data!.docs.length,
-                                  padding: const EdgeInsets.only(
-                                      top: 10, left: 10, right: 10),
-                                  shrinkWrap: true,
-                                  itemBuilder: (context, index)  {
-                                   final Timestamp timestamp =
-                          asyncSnapshot.data!.docs[index]['time'] as Timestamp;
-                      final DateTime dateTime = timestamp.toDate();
-                                   
-                                   return   ApproveNotificationTile(
-                                   width: width,
-                        height: height,
-                        text: asyncSnapshot.data!.docs[index]['subject'],
-                        date:
-                            '${dateTime.hour}:${dateTime.minute}:${dateTime.second}',
-                                  );}
-                                );
-                              }
-                            ),
+                                            return ApproveNotificationTile(
+                                              width: width,
+                                              height: height,
+                                              text: asyncSnapshot
+                                                  .data!.docs[index]['subject'],
+                                              date:
+                                                  '${dateTime.hour}:${dateTime.minute}:${dateTime.second}',
+                                            );
+                                          });
+                                }),
                           ),
                         ],
                       ),
@@ -122,45 +125,51 @@ class NotificationsView extends StatelessWidget {
                   case "Maintainance":
                   case "Security":
                     return Column(
-                      
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                     const    Text(
+                        const Text(
                           '\n     Sent Notifications',
                           style: TextStyle(fontSize: 20, color: Colors.black),
                           textAlign: TextAlign.right,
                         ),
                         SizedBox(
-                           height: height / 1.7,
-                            width: width,
-                          child: StreamBuilder(
-                                  stream:
-                                      FirebaseFirestore.instance.collection('Notification').snapshots(),
-                                  builder: (context, AsyncSnapshot<QuerySnapshot> asyncSnapshot) {
-                                    return !asyncSnapshot.hasData
-                                        ? const Center(child: CircularProgressIndicator())
-                                        : ListView.builder(
-                                            scrollDirection: Axis.vertical,
-                                            itemCount: asyncSnapshot.data!.docs.length,
-                                            padding:
-                          const EdgeInsets.only(top: 10, left: 10, right: 10),
-                                            shrinkWrap: true,
-                                            itemBuilder: (context, index) {
-                                              final Timestamp timestamp =
-                            asyncSnapshot.data!.docs[index]['time'] as Timestamp;
-                                              final DateTime dateTime = timestamp.toDate();
-                                              //  ));
-                        
-                                              return NotificationsTile(
+                          height: height / 1.7,
                           width: width,
-                          height: height,
-                          text: asyncSnapshot.data!.docs[index]['subject'],
-                          date:
-                              '${dateTime.hour}:${dateTime.minute}:${dateTime.second}',
-                                              );
-                                            });
-                                  }),
+                          child: StreamBuilder(
+                              stream: FirebaseFirestore.instance
+                                  .collection('Notification')
+                                  .snapshots(),
+                              builder: (context,
+                                  AsyncSnapshot<QuerySnapshot> asyncSnapshot) {
+                                return !asyncSnapshot.hasData
+                                    ? const Center(
+                                        child: CircularProgressIndicator())
+                                    : ListView.builder(
+                                        scrollDirection: Axis.vertical,
+                                        itemCount:
+                                            asyncSnapshot.data!.docs.length,
+                                        padding: const EdgeInsets.only(
+                                            top: 10, left: 10, right: 10),
+                                        shrinkWrap: true,
+                                        itemBuilder: (context, index) {
+                                          final Timestamp timestamp =
+                                              asyncSnapshot.data!.docs[index]
+                                                  ['time'] as Timestamp;
+                                          final DateTime dateTime =
+                                              timestamp.toDate();
+                                          //  ));
+
+                                          return NotificationsTile(
+                                            width: width,
+                                            height: height,
+                                            text: asyncSnapshot
+                                                .data!.docs[index]['subject'],
+                                            date:
+                                                '${dateTime.hour}:${dateTime.minute}:${dateTime.second}',
+                                          );
+                                        });
+                              }),
                         ),
                       ],
                     );

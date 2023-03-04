@@ -89,6 +89,29 @@ class NotificationsButton extends StatelessWidget {
   }
 }
 
+class OutletButton extends StatelessWidget {
+  const OutletButton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        margin: const EdgeInsets.only(right: 10),
+        decoration: BoxDecoration(
+            color: redColor, borderRadius: BorderRadius.circular(12)),
+        width: 48,
+        height: 48,
+        child: Center(
+          child: SvgPicture.asset(
+            'assets/profile/outlet.svg',
+            // color: Colors.white,
+            // size: 25,
+          ),
+        ));
+  }
+}
+
 class ButtonBack extends StatelessWidget {
   const ButtonBack({
     Key? key,

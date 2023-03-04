@@ -82,6 +82,10 @@ class TicketsView extends StatelessWidget {
                                         ['Outlet'],
                                     status: asyncSnapshot.data!.docs[index]
                                         ['Status'],
+                                    ticketId: asyncSnapshot.data!.docs[index]
+                                        ['Ticket Number'],
+                                    uid: asyncSnapshot.data!.docs[index]
+                                        ['User ID'],
                                   )),
                               child: InProgressTicketTile(
                                 text: asyncSnapshot.data!.docs[index]['header'],
@@ -121,6 +125,10 @@ class TicketsView extends StatelessWidget {
                                         ['Outlet'],
                                     status: asyncSnapshot.data!.docs[index]
                                         ['Status'],
+                                    ticketId: asyncSnapshot.data!.docs[index]
+                                        ['Ticket Number'],
+                                    uid: asyncSnapshot.data!.docs[index]
+                                        ['User ID'],
                                   )),
                               child: InProgressTicketTile(
                                 text: asyncSnapshot.data!.docs[index]['header'],
@@ -156,6 +164,10 @@ class TicketsView extends StatelessWidget {
                                             ['Workers'],
                                         comments: asyncSnapshot
                                             .data!.docs[index]['Comments'],
+                                        ticketId: asyncSnapshot
+                                            .data!.docs[index]['Ticket Number'],
+                                        uid: asyncSnapshot.data!.docs[index]
+                                            ['User ID'],
                                       ),
                                     ),
                                 child: InProgressTicketTile(
@@ -263,6 +275,10 @@ class TicketsView extends StatelessWidget {
                                         ['Workers'],
                                     comments: asyncSnapshot.data!.docs[index]
                                         ['Comments'],
+                                    ticketId: asyncSnapshot.data!.docs[index]
+                                        ['Ticket Number'],
+                                    uid: asyncSnapshot.data!.docs[index]
+                                        ['User ID'],
                                   )),
                               child: InProgressTicketTile(
                                   text: asyncSnapshot.data!.docs[index]

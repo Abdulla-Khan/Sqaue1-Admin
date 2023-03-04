@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../component/buttons.dart';
+import '../tickets_controller.dart';
 
 class GateInwardDetails extends StatelessWidget {
   const GateInwardDetails(
@@ -16,7 +18,9 @@ class GateInwardDetails extends StatelessWidget {
       required this.date,
       required this.workers,
       required this.outlet,
-      required this.status});
+      required this.status,
+      required this.uid,
+      required this.ticketId});
 
   final String particular;
   final String type;
@@ -31,6 +35,8 @@ class GateInwardDetails extends StatelessWidget {
   final List workers;
   final String outlet;
   final bool status;
+  final String uid;
+  final String ticketId;
 
   @override
   Widget build(BuildContext context) {
@@ -51,62 +57,80 @@ class GateInwardDetails extends StatelessWidget {
         automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Container(
-          width: width,
-          height: height / 1,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
-          child: Card(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-            elevation: 10,
-            child: Padding(
-              padding: const EdgeInsets.all(12),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        'Ticket For Gate Pass Inwards',
-                        style: TextStyle(
-                          fontSize: 19,
-                        ),
-                      ),
-                      CircleAvatar(
-                          backgroundColor: status
-                              ? const Color(0xFFFE0D0D)
-                              : const Color(0xFF12CA37),
-                          radius: width * 0.028,
-                          child: CircleAvatar(
-                              backgroundColor: Colors.white,
-                              radius: width * 0.021,
-                              child: CircleAvatar(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            children: [
+              Container(
+                width: width,
+                height: height / 1.35,
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(12)),
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12)),
+                  elevation: 10,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              'Ticket For Gate Pass Inwards',
+                              style: TextStyle(
+                                fontSize: 19,
+                              ),
+                            ),
+                            CircleAvatar(
                                 backgroundColor: status
                                     ? const Color(0xFFFE0D0D)
                                     : const Color(0xFF12CA37),
-                                radius: width * 0.017,
-                              )))
-                    ],
+                                radius: width * 0.028,
+                                child: CircleAvatar(
+                                    backgroundColor: Colors.white,
+                                    radius: width * 0.021,
+                                    child: CircleAvatar(
+                                      backgroundColor: status
+                                          ? const Color(0xFFFE0D0D)
+                                          : const Color(0xFF12CA37),
+                                      radius: width * 0.017,
+                                    )))
+                          ],
+                        ),
+                        ticektDetailText(head: 'Particular', text: particular),
+                        ticektDetailText(head: 'Type', text: type),
+                        ticektDetailText(head: 'Unit', text: unit),
+                        ticektDetailText(head: 'POC', text: poc),
+                        ticektDetailText(head: 'Quantity', text: quantity),
+                        ticektDetailText(head: 'Vehicle', text: vehicle),
+                        ticektDetailText(
+                            head: 'Registeration', text: registeration),
+                        ticektDetailText(head: 'Contact', text: contact),
+                        showWorkers(head: 'Workers', text: workers),
+                        ticektDetailText(head: 'Time', text: time),
+                        ticektDetailText(head: 'Date', text: date),
+                        ticektDetailText(head: 'Outlet Name', text: outlet),
+                      ],
+                    ),
                   ),
-                  ticektDetailText(head: 'Particular', text: particular),
-                  ticektDetailText(head: 'Type', text: type),
-                  ticektDetailText(head: 'Unit', text: unit),
-                  ticektDetailText(head: 'POC', text: poc),
-                  ticektDetailText(head: 'Quantity', text: quantity),
-                  ticektDetailText(head: 'Vehicle', text: vehicle),
-                  ticektDetailText(head: 'Registeration', text: registeration),
-                  ticektDetailText(head: 'Contact', text: contact),
-                  showWorkers(head: 'Workers', text: workers),
-                  ticektDetailText(head: 'Time', text: time),
-                  ticektDetailText(head: 'Date', text: date),
-                  ticektDetailText(head: 'Outlet Name', text: outlet),
-                ],
+                ),
               ),
-            ),
+              GetBuilder<TicketController>(
+                  init: Get.put<TicketController>(TicketController()),
+                  builder: (controller) {
+                    return LoginButton(
+                      width: width,
+                      height: height,
+                      function: () => controller.closeTicket(uid, ticketId),
+                      text: 'Close Ticket',
+                    );
+                  })
+            ],
           ),
         ),
       ),

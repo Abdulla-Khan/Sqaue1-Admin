@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:squareone_admin/ui/views/forms/add_depart_member/add_depart_member_view.dart';
-import 'package:squareone_admin/ui/views/forms/add_outlet/add_outlet_view.dart';
 
-import '../../../component/buttons.dart';
 import '../../../component/colors.dart';
 import '../../../component/department_tile.dart';
+import '../../tickets/tickets_view.dart';
 
 class SecurityView extends StatelessWidget {
   const SecurityView({super.key});
@@ -59,7 +57,7 @@ class SecurityView extends StatelessWidget {
             ],
           ),
           Align(
-            alignment: const Alignment(0, 0.6),
+            alignment: const Alignment(0, 1),
             child: Container(
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
@@ -75,7 +73,7 @@ class SecurityView extends StatelessWidget {
                 children: [
                   Container(
                     padding:
-                        EdgeInsets.only(top: height * 0.23, left: width * 0.06),
+                        EdgeInsets.only(top: height * 0.03, left: width * 0.06),
                     child: const Text(
                       ' Total Departments',
                       style: TextStyle(
@@ -95,87 +93,25 @@ class SecurityView extends StatelessWidget {
                                   mainAxisSpacing: 5,
                                   crossAxisSpacing: 10,
                                   crossAxisCount: 2),
-                          itemCount: securityCardTitle.length,
+                          itemCount: 4,
                           itemBuilder: (context, index) {
-                            return DepartmentTile(
-                              width: width,
-                              height: height,
-                              title: securityCardTitle[index],
-                              imgUrl: securityCardImages[index],
-                              header: securityCardHeaders[index],
+                            return GestureDetector(
+                              onTap: () {
+                                Get.to(() => TicketsView(), arguments: [
+                                  securityCardTitle[index],
+                                  securityCardHeaders[index]
+                                ]);
+                              },
+                              child: DepartmentTile(
+                                width: width,
+                                height: height,
+                                title: securityCardTitle[index],
+                                imgUrl: securityCardImages[index],
+                                header: securityCardHeaders[index],
+                              ),
                             );
                           }))
                 ],
-              ),
-            ),
-          ),
-          Align(
-            alignment: const Alignment(0, -0.6),
-            child: SizedBox(
-              width: width * 0.9,
-              height: height * 0.11,
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                elevation: 12,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text('   Add Outlet',
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.black,
-                                fontWeight: FontWeight.w500)),
-                      ],
-                    ),
-                    GestureDetector(
-                        onTap: () => Get.to(() => const AddOutletView()),
-                        child: AddButton(
-                          height: height,
-                          width: width,
-                        ))
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Align(
-            alignment: const Alignment(0, -0.3),
-            child: SizedBox(
-              width: width * 0.9,
-              height: height * 0.11,
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                elevation: 12,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text('   Add Department',
-                            style: TextStyle(
-                                fontSize: 19,
-                                color: Colors.black,
-                                fontWeight: FontWeight.w500)),
-                      ],
-                    ),
-                    GestureDetector(
-                        onTap: () => Get.to(() => const AddDepartmentView()),
-                        child: AddButton(
-                          height: height,
-                          width: width,
-                        ))
-                  ],
-                ),
               ),
             ),
           ),
